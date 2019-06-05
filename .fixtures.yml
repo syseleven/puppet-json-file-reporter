@@ -1,0 +1,5 @@
+fixtures:
+  symlinks:
+    logstash_tcp_reporter: "#{source_dir}"
+  forge_modules:
+    stdlib: 'puppetlabs/stdlib'
