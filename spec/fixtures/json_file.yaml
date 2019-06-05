@@ -1,0 +1,3 @@
+---
+:json_reportdir: /opt/puppetlabs/server/data/puppetserver/reports-json
+:hosts_subdir: Off

@@ -4,10 +4,13 @@
   "author": "SysEleven GmbH",
   "summary": "Installs a reporter which converts reports to json and stores them on the disk.",
   "license": "Apache-2.0",
+  "source": "https://github.com/syseleven/puppet-json-file-reporter",
+  "project_page": "https://github.com/syseleven/puppet-json-file-reporter",
+  "issues_url": "https://github.com/syseleven/puppet-json-file-reporter/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.1 < 5.3.0"
+      "version_requirement": ">= 4.13.1 < 7.0.0"
     }
   ],
   "operatingsystem_support": [
