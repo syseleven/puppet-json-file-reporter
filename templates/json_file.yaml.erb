@@ -1,0 +1,7 @@
+---
+:json_reportdir: <%= @report_dir %>
+<% if @enable_hosts_subdir -%>
+:hosts_subdir: On
+<% else -%>
+:hosts_subdir: Off
+<% end -%>

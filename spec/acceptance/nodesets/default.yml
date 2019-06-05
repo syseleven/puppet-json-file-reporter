@@ -1,0 +1,41 @@
+---
+HOSTS:
+  ubuntu-14.04:
+    roles:
+      - agent
+    platform: ubuntu-14.04-x86_64
+    hypervisor: docker
+    image: ubuntu:14.04
+    docker_image_commands:
+      - 'apt-get install -y wget'
+      - 'wget -O /tmp/puppet-release.deb http://apt.puppetlabs.com/puppet-release-trusty.deb && dpkg -i /tmp/puppet-release.deb'
+      - 'apt-get update && apt-get install -y puppet-agent'
+      - 'ln -s /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet'
+      - 'useradd puppet'
+  ubuntu-16.04:
+    roles:
+      - agent
+    platform: ubuntu-16.04-x86_64
+    hypervisor: docker
+    image: ubuntu:16.04
+    docker_image_commands:
+      - 'apt-get install -y wget'
+      - 'wget -O /tmp/puppet-release.deb http://apt.puppetlabs.com/puppet-release-trusty.deb && dpkg -i /tmp/puppet-release.deb'
+      - 'apt-get update && apt-get install -y puppet-agent'
+      - 'ln -s /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet'
+      - 'useradd puppet'
+  ubuntu-18.04:
+    roles:
+      - agent
+      - default
+    platform: ubuntu-18.04-x86_64
+    hypervisor: docker
+    image: ubuntu:18.04
+    docker_image_commands:
+      - 'apt-get install -y wget'
+      - 'wget -O /tmp/puppet-release.deb http://apt.puppetlabs.com/puppet-release-trusty.deb && dpkg -i /tmp/puppet-release.deb'
+      - 'apt-get update && apt-get install -y puppet-agent'
+      - 'ln -s /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet'
+      - 'useradd puppet'
+CONFIG:
+  type: agent

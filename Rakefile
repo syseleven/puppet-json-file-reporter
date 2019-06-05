@@ -11,10 +11,10 @@ begin
   if Gem::Specification.find_by_name('puppet-lint')
     require 'puppet-lint/tasks/puppet-lint'
     PuppetLint.configuration.ignore_paths = ['spec/**/*.pp', 'vendor/**/*.pp']
-    task default: [:rspec, :lint]
+    task default: [:spec, :lint]
   end
 rescue Gem::LoadError
-  task default: :rspec
+  task default: :spec
 end
 
 desc 'Run syntax, lint, and spec tests.'
