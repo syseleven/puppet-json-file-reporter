@@ -30,6 +30,7 @@
 class json_file_reporter (
   Stdlib::Absolutepath $report_dir          = '/opt/puppetlabs/server/data/puppetserver/reports-json',
   Boolean              $enable_hosts_subdir = false,
+  Boolean              $enable_newline      = true,
   String               $config_owner        = $json_file_reporter::params::config_owner,
   String               $config_group        = $json_file_reporter::params::config_group,
 ) inherits json_file_reporter::params {

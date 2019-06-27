@@ -21,5 +21,6 @@ describe 'json_file_reporter' do
     it { is_expected.to be_file }
     it { is_expected.to contain ':json_reportdir: /opt/puppetlabs/server/data/puppetserver/reports-json' }
     it { is_expected.to contain ':hosts_subdir: Off' }
+    it { is_expected.to contain ':newline: On' }
   end
 end

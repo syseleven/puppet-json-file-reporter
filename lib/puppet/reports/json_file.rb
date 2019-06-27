@@ -27,6 +27,8 @@ Puppet::Reports.register_report(:json_file) do
 
     reportdir = YAML.load_file(CONFIGURATION_FILE)[:json_reportdir]
     hosts_subdir = YAML.load_file(CONFIGURATION_FILE)[:hosts_subdir]
+    newline = YAML.load_file(CONFIGURATION_FILE)[:newline]
+
 
     if hosts_subdir
       dir = File.join(reportdir.to_s, host.to_s)
@@ -42,7 +44,11 @@ Puppet::Reports.register_report(:json_file) do
     end
 
     begin
-      File.open(file, 'w') { |f| f.write(to_json) }
+      if newline
+        File.open(file, 'w') { |f| f.puts(to_json) }
+      else
+        File.open(file, 'w') { |f| f.write(to_json) }
+      end
     rescue StandardError => detail
       Puppet.log_exception(detail, "Could not write json report for #{host} at #{json_file}: #{detail}")
     end
