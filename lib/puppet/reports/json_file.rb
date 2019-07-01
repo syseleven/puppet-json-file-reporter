@@ -43,14 +43,57 @@ Puppet::Reports.register_report(:json_file) do
       FileUtils.chmod_R(0o750, dir)
     end
 
-    begin
-      if newline
-        File.open(file, 'w') { |f| f.puts(to_json) }
-      else
-        File.open(file, 'w') { |f| f.write(to_json) }
+    report = {}
+
+    report = {
+      'host' => host,
+      '@timestamp' => Time.now.utc.iso8601,
+      '@version' => 1,
+      'puppet_configuration_version' => configuration_version,
+      'puppet_environment' => environment,
+      'puppet_noop' => noop ? 'true' : 'false',
+      'puppet_version' => puppet_version,
+      'puppet_report_format' => report_format,
+      'puppet_status' => status,
+      'puppet_time_start' => logs.first.time.utc.iso8601,
+      'puppet_time_end' => logs.last.time.utc.iso8601,
+    }
+
+    messages = []
+    tags = []
+
+    logs.each do |log|
+      time = log.time.utc.iso8601
+      level = log.level
+      message = log.message
+
+      messages << "(#{time})\t(#{level}) #{message}"
+      tags << log.tags.join(',')
+    end
+
+    report['puppet_logs'] = messages.join("\n")
+    report['puppet_tags'] = tags.flatten.join(',').split(',').sort.uniq
+
+    report['metrics'] = {}
+
+    metrics.each do |key, value|
+      report['metrics'][key] = {}
+
+      value.values.each do |item|
+        report['metrics'][key][item[1].tr('[A-Z ]', '[a-z_]')] = item[2]
       end
+    end
+
+    begin
+      File.open(file, 'a') { |f|
+        f.puts(report.to_json)
+
+        if newline
+          f.puts("\n")
+        end
+      }
     rescue StandardError => detail
-      Puppet.log_exception(detail, "Could not write json report for #{host} at #{json_file}: #{detail}")
+      Puppet.log_exception(detail, "Could not write json report for #{host} at #{file}: #{detail}")
     end
   end
 
