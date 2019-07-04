@@ -77,6 +77,14 @@ Group of the configuration file
 
 Default value: $json_file_reporter::params::config_group
 
+##### `enable_newline`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
 ### json_file_reporter::params
 
 Default values

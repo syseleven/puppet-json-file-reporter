@@ -1,6 +1,6 @@
 {
   "name": "syseleven-json_file_reporter",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "SysEleven GmbH",
   "summary": "Installs a reporter which converts reports to json and stores them on the disk.",
   "license": "Apache-2.0",

@@ -1,3 +1,7 @@
+# 0.2.0 (July 4th 2019) newline and content
+- adds newline feature
+- content is now converted to json from a data hash (has been a object before)
+
 # 0.1.2 (June 6th 2019) fixes fixtures file
 - fixes the .fixtures.yml for incorrect module name
 
